@@ -1,4 +1,4 @@
-package com.switchfully.vaadin.booking.domain;
+package com.switchfully.vaadin.domain;
 
 import java.io.Serializable;
 import java.util.UUID;

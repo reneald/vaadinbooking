@@ -1,4 +1,4 @@
-package com.switchfully.vaadin.booking.domain;
+package com.switchfully.vaadin.domain;
 
 public final class AccomodationId extends Id {
 

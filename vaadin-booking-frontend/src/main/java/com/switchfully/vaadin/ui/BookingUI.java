@@ -1,7 +1,7 @@
-package com.switchfully.vaadin.booking.ui;
+package com.switchfully.vaadin.ui;
 
-import com.switchfully.vaadin.booking.domain.Accomodation;
-import com.switchfully.vaadin.booking.service.AccomodationService;
+import com.switchfully.vaadin.domain.Accomodation;
+import com.switchfully.vaadin.service.AccomodationService;
 import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
@@ -34,7 +34,15 @@ public class BookingUI extends UI {
 
         mainLayout.setStyleName("mainLayout");
 
-        grid.setContainerDataSource(new BeanItemContainer<>(Accomodation.class, accomodationService.getAccomodations()));
+        BeanItemContainer<Accomodation> container = new BeanItemContainer<>(Accomodation.class, accomodationService.getAccomodations());
+        container.addNestedContainerProperty("city.name");
+
+        grid.setColumns("name", "starRating", "city.name");
+
+        grid.getColumn("city.name").setHeaderCaption("City");
+
+//        grid.setWidth("100%");
+        grid.setContainerDataSource(container);
 
         mainLayout.setMargin(true);
         setContent(mainLayout);

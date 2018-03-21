@@ -1,8 +1,8 @@
-package com.switchfully.vaadin.booking.domain;
+package com.switchfully.vaadin.domain;
 
 import java.time.Instant;
 
-import static com.switchfully.vaadin.booking.domain.AccomodationId.accomodationId;
+import static com.switchfully.vaadin.domain.AccomodationId.accomodationId;
 
 public class Accomodation {
 
@@ -12,12 +12,15 @@ public class Accomodation {
     private StarRating starRating;
     private Instant dateCreated;
 
+    private City city;
+
     public Accomodation(AccomodationBuilder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.numberOfRooms = builder.numberOfRooms;
         this.starRating = builder.starRating;
         this.dateCreated = builder.dateCreated;
+        this.city = builder.city;
     }
 
     public AccomodationId getId() {
@@ -40,6 +43,10 @@ public class Accomodation {
         return dateCreated;
     }
 
+    public City getCity() {
+        return city;
+    }
+
     public static class AccomodationBuilder {
 
         public AccomodationId id = accomodationId();
@@ -47,6 +54,7 @@ public class Accomodation {
         private int numberOfRooms;
         private Instant dateCreated = Instant.now();
         private StarRating starRating;
+        private City city;
 
         public static AccomodationBuilder accomodation() {
             return new AccomodationBuilder();
@@ -70,6 +78,11 @@ public class Accomodation {
 
         public AccomodationBuilder withStarRating(StarRating starRating) {
             this.starRating = starRating;
+            return this;
+        }
+
+        public AccomodationBuilder withCity(City city) {
+            this.city = city;
             return this;
         }
 
