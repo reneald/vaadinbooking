@@ -5,11 +5,14 @@ import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.ui.*;
 
+import java.util.function.Consumer;
+
 import static com.switchfully.vaadin.domain.Booking.BookingBuilder.booking;
 
 public class BookingForm extends CustomComponent {
 
     private Booking booking = booking().build();
+    private Consumer<Booking> saveClickListener;
 
     public BookingForm() {
         BeanFieldGroup<Booking> binder = new BeanFieldGroup<>(Booking.class);
@@ -44,6 +47,7 @@ public class BookingForm extends CustomComponent {
         save.addClickListener(e -> {
             try {
                 binder.commit();
+                if (saveClickListener != null) saveClickListener.accept(this.booking);
             } catch (FieldGroup.CommitException e1) {
                 e1.printStackTrace();
             }
@@ -58,7 +62,12 @@ public class BookingForm extends CustomComponent {
         setCompositionRoot(mainLayout);
     }
 
+    public void addSaveClickListener(Consumer<Booking> saveClickListener) {
+        this.saveClickListener = saveClickListener;
+    }
+
     public void setBooking(Booking booking) {
         this.booking = booking;
     }
+
 }

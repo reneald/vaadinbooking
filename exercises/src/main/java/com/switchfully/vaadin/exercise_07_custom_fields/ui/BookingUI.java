@@ -26,11 +26,17 @@ public class BookingUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        Booking booking = booking().build();
+        BookingDetailsComponent bookingDetails = new BookingDetailsComponent();
+        bookingDetails.setVisible(false);
 
         BookingForm bookingForm = new BookingForm();
+        bookingForm.addSaveClickListener(b -> {
+            bookingForm.setVisible(false);
+            bookingDetails.setBooking(b);
+            bookingDetails.setVisible(true);
+        });
 
-        VerticalLayout mainLayout = new VerticalLayout(bookingForm);
+        VerticalLayout mainLayout = new VerticalLayout(bookingForm, bookingDetails);
         setContent(mainLayout);
     }
 

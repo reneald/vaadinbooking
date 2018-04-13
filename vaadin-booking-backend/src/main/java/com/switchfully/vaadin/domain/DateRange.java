@@ -1,6 +1,7 @@
 package com.switchfully.vaadin.domain;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DateRange implements Cloneable {
 
@@ -35,4 +36,10 @@ public class DateRange implements Cloneable {
         return new DateRange(startDate, endDate);
     }
 
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/LLLL/yyyy");
+
+        return String.format("%s to %s", startDate.format(formatter), endDate.format(formatter));
+    }
 }
