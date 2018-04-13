@@ -1,8 +1,12 @@
 package com.switchfully.vaadin.domain;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static com.switchfully.vaadin.domain.AccomodationId.accomodationId;
+import static java.util.Collections.unmodifiableList;
 
 public class Accomodation {
 
@@ -12,6 +16,8 @@ public class Accomodation {
     private StarRating starRating;
     private Instant dateCreated;
     private City city;
+
+    private List<Booking> bookings = new ArrayList<>();
 
     private Accomodation(AccomodationBuilder builder) {
         this.id = builder.id;
@@ -44,6 +50,15 @@ public class Accomodation {
 
     public City getCity() {
         return city;
+    }
+
+    public List<Booking> getBookings() {
+        return unmodifiableList(bookings);
+    }
+
+    public void addBooking(Booking booking) {
+        // TODO: validate availability.
+        this.bookings.add(booking);
     }
 
     public void setName(String name) {

@@ -2,6 +2,7 @@ package com.switchfully.vaadin.service;
 
 import com.switchfully.vaadin.domain.Accomodation;
 import com.switchfully.vaadin.domain.AccomodationId;
+import com.switchfully.vaadin.domain.Booking;
 import com.switchfully.vaadin.domain.StarRating;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,10 @@ public class AccomodationService {
         this.accomodations = this.accomodations.stream()
                 .filter(accomodation -> !accomodation.getId().equals(id))
                 .collect(toList());
+    }
+
+    public void save(AccomodationId accomodationId, Booking booking) {
+        getAccomodation(accomodationId).addBooking(booking);
     }
 
     public void save(Accomodation accomodation) {
