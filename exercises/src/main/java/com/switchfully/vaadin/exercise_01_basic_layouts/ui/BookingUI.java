@@ -15,18 +15,28 @@ public class BookingUI extends UI {
     @Override
     protected void init(VaadinRequest request) {
         // Using VerticalLayout and HorizontalLayout, create
-        Label firstNameCaption = new Label("First Name:");
-        Label firstName = new Label("Donald");
+        Button one = new Button("1");
+        Button two = new Button("2");
+        Button three = new Button("3");
 
-        Label surNameCaption = new Label("Surname:");
-        Label surName = new Label("Trump");
+        Button four = new Button("4");
+        Button five = new Button("5");
+        Button six = new Button("6");
 
-        HorizontalLayout firstNameLayout = new HorizontalLayout(firstNameCaption, firstName);
-        firstNameLayout.setSpacing(true);
-        HorizontalLayout surNameLayout = new HorizontalLayout(surNameCaption, surName);
-        surNameLayout.setSpacing(true);
+        Button seven = new Button("7");
+        Button eight = new Button("8");
+        Button nine = new Button("9");
 
-        VerticalLayout mainLayout = new VerticalLayout(firstNameLayout, surNameLayout);
+        Button star = new Button("*");
+        Button zero = new Button("0");
+        Button hashtag = new Button("#");
+
+        HorizontalLayout line1 = new HorizontalLayout(one, two, three);
+        HorizontalLayout line2 = new HorizontalLayout(four, five, six);
+        HorizontalLayout line3 = new HorizontalLayout(seven, eight, nine);
+        HorizontalLayout line4 = new HorizontalLayout(star, zero, hashtag);
+
+        VerticalLayout mainLayout = new VerticalLayout(line1, line2, line3, line4);
 
         setContent(mainLayout);
     }
