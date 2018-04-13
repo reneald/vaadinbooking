@@ -1,4 +1,4 @@
-package com.switchfully.vaadin.lesson_01.grids.ui;
+package com.switchfully.vaadin.exercise_02_grids.ui;
 
 import com.switchfully.vaadin.domain.Accomodation;
 import com.switchfully.vaadin.service.AccomodationService;
