@@ -1,4 +1,4 @@
-package com.switchfully.vaadin.exercise_03_;
+package com.switchfully.vaadin.exercise_03_live_filtering;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

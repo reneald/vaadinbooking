@@ -11,10 +11,9 @@ public class Accomodation {
     private int numberOfRooms;
     private StarRating starRating;
     private Instant dateCreated;
-
     private City city;
 
-    public Accomodation(AccomodationBuilder builder) {
+    private Accomodation(AccomodationBuilder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.numberOfRooms = builder.numberOfRooms;
@@ -47,9 +46,29 @@ public class Accomodation {
         return city;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNumberOfRooms(int numberOfRooms) {
+        this.numberOfRooms = numberOfRooms;
+    }
+
+    public void setStarRating(StarRating starRating) {
+        this.starRating = starRating;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public boolean isPersisted() {
+        return id != null;
+    }
+
     public static class AccomodationBuilder {
 
-        public AccomodationId id = accomodationId();
+        private AccomodationId id;
         private String name;
         private int numberOfRooms;
         private Instant dateCreated = Instant.now();
@@ -60,10 +79,31 @@ public class Accomodation {
             return new AccomodationBuilder();
         }
 
-        private AccomodationBuilder() {}
+        public static AccomodationBuilder cloneAccomodation(Accomodation accomodation) {
+            return new AccomodationBuilder()
+                    .withId(accomodation.getId())
+                    .withName(accomodation.getName())
+                    .withNumberOfRooms(accomodation.getNumberOfRooms())
+                    .withCity(accomodation.getCity())
+                    .withDateCreated(accomodation.getDateCreated())
+                    .withStarRating(accomodation.getStarRating());
+        }
+
+        private AccomodationBuilder() {
+        }
 
         public Accomodation build() {
             return new Accomodation(this);
+        }
+
+        public AccomodationBuilder withId() {
+            if (id == null) id = accomodationId();
+            return this;
+        }
+
+        public AccomodationBuilder withId(AccomodationId id) {
+            this.id = id;
+            return this;
         }
 
         public AccomodationBuilder withNumberOfRooms(int numberOfRooms) {

@@ -5,4 +5,4 @@ Use `AccomodationService.getAccomodations()` to fetch the list of accomodations.
 
 Use `BeanItemContainer` to link the list of accomodations to the `Grid`.
 
-![exercise 1](exercise.png)
+![screenshot](exercise.png)

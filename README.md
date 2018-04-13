@@ -8,5 +8,8 @@
     1. In IntelliJ, go to File -> New... -> Project From Version Control -> Github
     1. Clone this repository: https://github.com/stevendecock/vaadinbooking.git
 
+## Exercises
+You can find the exercises in the [Exercises module](exercises/README.md).
+
 ## Resources
 Vaadin Docs: https://vaadin.com/docs/v7
