@@ -9,7 +9,7 @@ The solutions to the exercises can be found in the 'solutions' branch.
 Using `VerticalLayout` and `HorizontalLayout`, create a UI representing the buttons of an old school cellphone.
 Use the `Button` component for this.
 
-![exercise 1](https://raw.githubusercontent.com/stevendecock/vaadinbooking/master/exercises/images/exercise_01.png)
+![exercise 1](https://raw.githubusercontent.com/stevendecock/vaadinbooking/master/exercises/images/exercise01.PNG)
 
 ## Exercise 2 - Listing entities in a Grid
 
