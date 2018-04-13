@@ -5,11 +5,7 @@ Each exercise has it's own `Application_Exercise_##` Spring Boot class that you 
 
 The solutions to the exercises can be found in the 'solutions' branch.
 
-## Exercise 1 - VerticalLayout and HorizontalLayout
-Using `VerticalLayout` and `HorizontalLayout`, create a UI representing the buttons of an old school cellphone.
-Use the `Button` component for this.
-
-![exercise 1](https://raw.githubusercontent.com/stevendecock/vaadinbooking/master/exercises/images/exercise01.PNG)
-
-## Exercise 2 - Listing entities in a Grid
-
+## Links to exercises
+[Exercise 1 - VerticalLayout and HorizontalLayout](src/main/java/com/switchfully/vaadin/exercise_01_basic_layouts/README.md)
+[Exercise 2 - Grids](src/main/java/com/switchfully/vaadin/exercise_02_grids/README.md)
+[Exercise 3 - ?](src/main/java/com/switchfully/vaadin/exercise_03_?/README.md)
