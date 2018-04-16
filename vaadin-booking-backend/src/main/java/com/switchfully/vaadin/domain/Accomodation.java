@@ -12,16 +12,20 @@ public class Accomodation {
 
     private AccomodationId id;
     private String name;
+    private String description;
     private int numberOfRooms;
     private StarRating starRating;
     private Instant dateCreated;
     private City city;
+    private String imagePath;
 
     private List<Booking> bookings = new ArrayList<>();
 
     private Accomodation(AccomodationBuilder builder) {
         this.id = builder.id;
         this.name = builder.name;
+        this.description = builder.description;
+        this.imagePath = builder.imagePath;
         this.numberOfRooms = builder.numberOfRooms;
         this.starRating = builder.starRating;
         this.dateCreated = builder.dateCreated;
@@ -81,10 +85,28 @@ public class Accomodation {
         return id != null;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
     public static class AccomodationBuilder {
+
+        private static final String DEFAULT_DESCRIPTION = "Lorem <b>ipsum</b> dolor sit <u>amet</u>, " +
+                "consectetur adipiscing elit, " +
+                "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis " +
+                "nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor " +
+                "in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint " +
+                "occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        private static final String DEFAULT_IMAGE = "generic_hotel.jpg";
 
         private AccomodationId id;
         private String name;
+        private String description = DEFAULT_DESCRIPTION;
+        private String imagePath = DEFAULT_IMAGE;
         private int numberOfRooms;
         private Instant dateCreated = Instant.now();
         private StarRating starRating;
@@ -98,6 +120,8 @@ public class Accomodation {
             return new AccomodationBuilder()
                     .withId(accomodation.getId())
                     .withName(accomodation.getName())
+                    .withImagePath(accomodation.getImagePath())
+                    .withDescription(accomodation.getDescription())
                     .withNumberOfRooms(accomodation.getNumberOfRooms())
                     .withCity(accomodation.getCity())
                     .withDateCreated(accomodation.getDateCreated())
@@ -143,6 +167,16 @@ public class Accomodation {
 
         public AccomodationBuilder withName(String name) {
             this.name = name;
+            return this;
+        }
+
+        public AccomodationBuilder withImagePath(String imagePath) {
+            this.imagePath = imagePath;
+            return this;
+        }
+
+        public AccomodationBuilder withDescription(String description) {
+            this.description = description;
             return this;
         }
     }

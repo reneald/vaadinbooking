@@ -2,7 +2,7 @@ package com.switchfully.vaadin.domain;
 
 public enum StarRating {
 
-    NO_STARS(0), ONE_STAR(1), TWO_STARS(1), THREE_STARS(1), FOUR_STARS(1), FIVE_STARS(1);
+    NO_STARS(0), ONE_STAR(1), TWO_STARS(2), THREE_STARS(3), FOUR_STARS(4), FIVE_STARS(5);
 
     private int numberOfStars;
 

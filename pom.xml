@@ -20,7 +20,7 @@
     <modules>
         <module>vaadin-booking-frontend</module>
         <module>vaadin-booking-backend</module>
-        <module>lesson-01-grids</module>
+        <module>exercises</module>
     </modules>
 
     <dependencyManagement>

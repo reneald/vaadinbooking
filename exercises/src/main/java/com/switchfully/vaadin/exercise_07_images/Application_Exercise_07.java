@@ -1,4 +1,4 @@
-package com.switchfully.vaadin.exercise_07_custom_fields;
+package com.switchfully.vaadin.exercise_07_images;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

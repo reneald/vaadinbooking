@@ -1,10 +1,9 @@
-package com.switchfully.vaadin.exercise_07_custom_fields.ui;
+package com.switchfully.vaadin.exercise_xx_fieldgroup_fieldfactory_and_custom_fields.ui;
 
 import com.switchfully.vaadin.domain.DateRange;
 import com.vaadin.data.util.converter.Converter;
 
 import java.time.LocalDate;
-import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.Locale;
 

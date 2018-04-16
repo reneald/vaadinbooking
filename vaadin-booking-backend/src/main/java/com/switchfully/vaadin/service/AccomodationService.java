@@ -237,4 +237,9 @@ public class AccomodationService {
         return r.nextInt((max - min) + 1) + min;
     }
 
+    public List<Accomodation> findAccomodations(String searchText) {
+        return accomodations.stream()
+                .filter(accomodation -> accomodation.getName().toLowerCase().contains(searchText.toLowerCase()))
+                .collect(toList());
+    }
 }

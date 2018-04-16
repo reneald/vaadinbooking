@@ -1,4 +1,4 @@
-package com.switchfully.vaadin.exercise_07_custom_fields;
+package com.switchfully.vaadin.exercise_07_images;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
