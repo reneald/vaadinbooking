@@ -1,4 +1,4 @@
-package com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.admin;
+package com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components;
 
 import com.switchfully.vaadin.domain.Accomodation;
 

@@ -76,4 +76,11 @@ public class EditAccomodationForm extends FormLayout {
         listeners.forEach(l -> l.saveAccomodationClicked(accomodation));
     }
 
+    public interface EditAccomodationFormListener {
+
+        void saveAccomodationClicked(Accomodation accomodation);
+        void deleteAccomodationClicked(Accomodation accomodation);
+        void cancelClicked();
+
+    }
 }

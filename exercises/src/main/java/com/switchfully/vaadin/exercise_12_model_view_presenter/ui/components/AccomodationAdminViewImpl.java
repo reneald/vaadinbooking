@@ -1,9 +1,7 @@
-package com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.admin;
+package com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components;
 
 import com.switchfully.vaadin.domain.Accomodation;
 import com.switchfully.vaadin.domain.City;
-import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.EditAccomodationForm;
-import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.EditAccomodationFormListener;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.*;
@@ -12,7 +10,7 @@ import com.vaadin.ui.themes.ValoTheme;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccomodationAdminViewImpl extends CustomComponent implements AccomodationAdminView, EditAccomodationFormListener {
+public class AccomodationAdminViewImpl extends CustomComponent implements AccomodationAdminView, EditAccomodationForm.EditAccomodationFormListener {
 
     private Grid grid = new Grid();
 

@@ -1,8 +1,8 @@
 package com.switchfully.vaadin.exercise_12_model_view_presenter.ui;
 
-import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.admin.AccomodationAdminModel;
-import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.admin.AccomodationAdminPresenter;
-import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.admin.AccomodationAdminViewImpl;
+import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.AccomodationAdminModel;
+import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.AccomodationAdminPresenter;
+import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.AccomodationAdminViewImpl;
 import com.switchfully.vaadin.service.AccomodationService;
 import com.switchfully.vaadin.service.CityService;
 import com.vaadin.annotations.Theme;
