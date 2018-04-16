@@ -1,4 +1,4 @@
-# Exercise 7 - FieldGroup, FieldFactory and Custom Fields
+# Exercise 11 - FieldGroup, FieldFactory and Custom Fields
 
 Create an input form to book an accomodation. This means creating a 
 This time, use `BeanFieldGroup` to bind 

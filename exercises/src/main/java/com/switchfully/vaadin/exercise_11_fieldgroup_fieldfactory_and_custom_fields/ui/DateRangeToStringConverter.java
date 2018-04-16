@@ -1,4 +1,4 @@
-package com.switchfully.vaadin.exercise_xx_fieldgroup_fieldfactory_and_custom_fields.ui;
+package com.switchfully.vaadin.exercise_11_fieldgroup_fieldfactory_and_custom_fields.ui;
 
 import com.switchfully.vaadin.domain.DateRange;
 import com.vaadin.data.util.converter.Converter;

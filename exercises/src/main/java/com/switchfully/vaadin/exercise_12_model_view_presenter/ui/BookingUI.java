@@ -1,14 +1,13 @@
-package com.switchfully.vaadin.exercise_05_binding_beans.ui;
+package com.switchfully.vaadin.exercise_12_model_view_presenter.ui;
 
-import com.switchfully.vaadin.exercise_05_binding_beans.ui.components.AccomodationAdmin;
+import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.admin.AccomodationAdminModel;
+import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.admin.AccomodationAdminPresenter;
+import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.admin.AccomodationAdminViewImpl;
 import com.switchfully.vaadin.service.AccomodationService;
 import com.switchfully.vaadin.service.CityService;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,7 +26,10 @@ public class BookingUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        setContent(new AccomodationAdmin(this.accomodationService, this.cityService));
+        AccomodationAdminViewImpl accomodationAdminView = new AccomodationAdminViewImpl();
+        new AccomodationAdminPresenter(new AccomodationAdminModel(accomodationService, cityService), accomodationAdminView);
+
+        setContent(accomodationAdminView);
     }
 
 }

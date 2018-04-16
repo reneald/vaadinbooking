@@ -1,24 +1,20 @@
-package com.switchfully.vaadin.exercise_05_binding_beans.ui;
+package com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components;
 
 import com.switchfully.vaadin.domain.Accomodation;
 import com.switchfully.vaadin.domain.City;
 import com.switchfully.vaadin.domain.StarRating;
-import com.switchfully.vaadin.service.AccomodationService;
-import com.switchfully.vaadin.service.CityService;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.event.ShortcutAction;
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.switchfully.vaadin.domain.Accomodation.AccomodationBuilder.cloneAccomodation;
 
 public class EditAccomodationForm extends FormLayout {
-
-    private final BookingUI ui;
-    private AccomodationService accomodationService;
-    private final CityService cityService;
 
     private TextField name = new TextField("Name");
     private NativeSelect city = new NativeSelect("City");
@@ -29,15 +25,13 @@ public class EditAccomodationForm extends FormLayout {
     private Button cancel = new Button("Cancel");
     private Accomodation accomodation;
 
-    public EditAccomodationForm(BookingUI ui, AccomodationService accomodationService, CityService cityService) {
-        this.ui = ui;
-        this.accomodationService = accomodationService;
-        this.cityService = cityService;
+    private List<EditAccomodationFormListener> listeners = new ArrayList<>();
 
+    public EditAccomodationForm() {
         name.setWidth("30em");
         name.setNullRepresentation("");
         starRating.addItems((Object[]) StarRating.values());
-        city.setContainerDataSource(new BeanItemContainer<>(City.class, cityService.getCities()));
+
         city.setItemCaptionPropertyId("name");
 
         save.setStyleName(ValoTheme.BUTTON_PRIMARY);
@@ -53,8 +47,12 @@ public class EditAccomodationForm extends FormLayout {
         addComponents(name, city, numberOfRooms, starRating, buttons);
     }
 
-    private void cancel() {
-        setVisible(false);
+    public void setCities(List<City> cities) {
+        city.setContainerDataSource(new BeanItemContainer<>(City.class, cities));
+    }
+
+    public void addListener(EditAccomodationFormListener listener) {
+        this.listeners.add(listener);
     }
 
     public void setAccomodation(Accomodation accomodation) {
@@ -66,15 +64,16 @@ public class EditAccomodationForm extends FormLayout {
         setVisible(true);
         name.selectAll();
     }
+
+    private void cancel() {
+        listeners.forEach(l -> l.cancelClicked());
+    }
     private void delete() {
-        accomodationService.delete(accomodation.getId());
-        ui.updateList();
-        setVisible(false);
+        listeners.forEach(l -> l.deleteAccomodationClicked(accomodation));
     }
 
     private void save() {
-        accomodationService.save(accomodation);
-        ui.updateList();
-        setVisible(false);
+        listeners.forEach(l -> l.saveAccomodationClicked(accomodation));
     }
+
 }

@@ -1,4 +1,4 @@
-package com.switchfully.vaadin.exercise_xx_fieldgroup_fieldfactory_and_custom_fields.ui;
+package com.switchfully.vaadin.exercise_11_fieldgroup_fieldfactory_and_custom_fields.ui;
 
 import com.switchfully.vaadin.domain.Booking;
 import com.vaadin.ui.CustomComponent;
