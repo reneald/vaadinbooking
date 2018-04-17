@@ -21,7 +21,7 @@ public class ExerciseUI extends UI {
     protected void init(VaadinRequest request) {
         VerticalLayout mainLayout = new VerticalLayout();
 
-        // Show the list of accomodations from accomodationService.getAccomodations() in a Grid.
+        // TODO Exercise 2: Show the list of accomodations from accomodationService.getAccomodations() in a Grid.
 
         // Use BeanItemContainer as the ContainerDataSource for the Grid.
 

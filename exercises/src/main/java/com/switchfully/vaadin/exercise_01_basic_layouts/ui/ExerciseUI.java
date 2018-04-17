@@ -14,8 +14,7 @@ public class ExerciseUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        // Using VerticalLayout and HorizontalLayout,
-        // create a button layout resembling the buttons of an old school cellphone.
+        // TODO Exercise 1: Using VerticalLayout and HorizontalLayout, create a button layout resembling the buttons of an old school cellphone.
 
         // Use the Button component to create the buttons:
         // Button one = new Button("1");

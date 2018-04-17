@@ -18,11 +18,11 @@ public class ExerciseUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        // Create a TextField and a Label, both bound to the same 'name' Property.
-        // Add a button to commit the field.
-        // Clicking the button should update the Label with the value in the TextField.
+        // TODO Exercise 4: Create a TextField and a Label, both bound to the same 'name' Property.
+        // TODO Exercise 4: Add a button to commit the field.
+        // TODO Exercise 4: Clicking the button should update the Label with the value in the TextField.
 
-        // Extra credits: Add a checkbox to hide the button and make the TextField auto-commit.
+        // TODO Exercise 4 (Extra): Add a checkbox to hide the button and make the TextField auto-commit.
 
         VerticalLayout mainLayout = new VerticalLayout();
         mainLayout.setMargin(true);

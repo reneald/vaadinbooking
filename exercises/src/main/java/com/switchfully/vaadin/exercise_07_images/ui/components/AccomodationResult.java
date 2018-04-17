@@ -15,24 +15,12 @@ public class AccomodationResult extends CustomComponent {
         this.accomodation = accomodation;
         VerticalLayout main = new VerticalLayout();
 
-        // Image as a file resource
-        FileResource resource = new FileResource(new File(
-                Paths.IMAGES_PATH + accomodation.getImagePath()));
-
-        // Show the image in the application
-        Image accomodationImage = new Image();
-        accomodationImage.setSource(resource);
-        accomodationImage.setWidth("300px");
-
         AccomodationDetails accomodationDetails = new AccomodationDetails(this.accomodation);
-        accomodationDetails.setWidth("100%");
 
-        HorizontalLayout horizontalLayout = new HorizontalLayout(accomodationImage, accomodationDetails);
-        horizontalLayout.setExpandRatio(accomodationDetails, 1.0f);
-        horizontalLayout.setWidth("100%");
+        // TODO Exercise 7: Add an image of the accomodation.
 
         main.addComponent(
-                horizontalLayout
+                accomodationDetails
         );
 
         Panel panel = new Panel(main);

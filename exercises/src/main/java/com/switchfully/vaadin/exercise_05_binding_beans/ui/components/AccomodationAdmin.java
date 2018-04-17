@@ -29,7 +29,12 @@ public class AccomodationAdmin extends CustomComponent {
         populateGrid(accomodations);
         CssLayout filtering = createFilterComponent(accomodations);
 
-        // Add a form to the right of the grid to edit details of an accomodation.
+        // TODO Exercise 5: Add a 'New Accomodation' button.
+        // TODO Exercise 5: Create an EditAccomodationForm and add it to the right of the grid to add a new accomodation.
+        // TODO Exercise 5: When selecting an accomodation in the grid, load it in the EditAccomodationForm to update it.
+        // TODO Exercise 5: Add a 'Delete' button to the form to delete an accomodation.
+        // TODO Exercise 5: Add a 'Cancel' button to the form to close the form.
+        // TODO Exercise 5 (Extra): Add ta DateField for creationDate to the form.
 
         HorizontalLayout toolbar = new HorizontalLayout(filtering);
         toolbar.setSpacing(true);

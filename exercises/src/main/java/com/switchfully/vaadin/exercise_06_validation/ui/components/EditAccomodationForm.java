@@ -18,6 +18,11 @@ import com.vaadin.ui.themes.ValoTheme;
 
 import static com.switchfully.vaadin.domain.Accomodation.AccomodationBuilder.cloneAccomodation;
 
+// TODO Exercise 6: Name is required.
+// TODO Exercise 6: City is required
+// TODO Exercise 6: Number of rooms should be > 0 and < 10000
+// TODO Exercise 6 (extra): Four and five star hotels should have at least 20 rooms.
+
 public class EditAccomodationForm extends FormLayout {
 
     private final AccomodationAdmin admin;

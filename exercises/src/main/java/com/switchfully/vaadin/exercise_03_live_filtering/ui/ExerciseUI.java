@@ -46,9 +46,8 @@ public class ExerciseUI extends UI {
 
         grid.setContainerDataSource(container);
 
-        // Add a filter TextField to the top of the grid to filter the list of accomodations by name.
-
-        // Also add a button next to the filter TextField to clear the filter.
+        // TODO Exercise 3: Add a filter TextField to the top of the grid to filter the list of accomodations by name.
+        // TODO Exercise 3: Add a button next to the filter TextField to clear the filter.
 
         mainLayout.setMargin(true);
         setContent(mainLayout);
