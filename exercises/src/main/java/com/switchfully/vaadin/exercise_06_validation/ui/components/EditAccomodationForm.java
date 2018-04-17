@@ -1,8 +1,9 @@
-package com.switchfully.vaadin.exercise_06_validation.ui;
+package com.switchfully.vaadin.exercise_06_validation.ui.components;
 
 import com.switchfully.vaadin.domain.Accomodation;
 import com.switchfully.vaadin.domain.City;
 import com.switchfully.vaadin.domain.StarRating;
+import com.switchfully.vaadin.exercise_06_validation.ui.ExerciseUI;
 import com.switchfully.vaadin.service.AccomodationService;
 import com.switchfully.vaadin.service.CityService;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
@@ -19,7 +20,7 @@ import static com.switchfully.vaadin.domain.Accomodation.AccomodationBuilder.clo
 
 public class EditAccomodationForm extends FormLayout {
 
-    private final BookingUI ui;
+    private final AccomodationAdmin admin;
 
     private final AccomodationService accomodationService;
     private final CityService cityService;
@@ -35,8 +36,8 @@ public class EditAccomodationForm extends FormLayout {
     private Accomodation accomodation;
     private BeanFieldGroup<Accomodation> beanFieldGroup;
 
-    public EditAccomodationForm(BookingUI ui, AccomodationService accomodationService, CityService cityService) {
-        this.ui = ui;
+    public EditAccomodationForm(AccomodationAdmin admin, AccomodationService accomodationService, CityService cityService) {
+        this.admin = admin;
         this.accomodationService = accomodationService;
         this.cityService = cityService;
 
@@ -140,10 +141,9 @@ public class EditAccomodationForm extends FormLayout {
                     if ((Integer) numberOfRooms.getConvertedValue() < 20) {
                         numberOfRooms.setComponentError(new UserError("Four and five star hotels should have at least 20 rooms."));
                         throw new FieldGroup.CommitException("Four and five star hotels should have at least 20 rooms.");
-                    } else {
-                        numberOfRooms.setComponentError(null);
                     }
                 }
+                numberOfRooms.setComponentError(null);
             }
 
             @Override
@@ -159,14 +159,14 @@ public class EditAccomodationForm extends FormLayout {
     }
     private void delete() {
         accomodationService.delete(accomodation.getId());
-        ui.updateList();
+        admin.updateList();
         setVisible(false);
     }
 
     private void save() {
         // Solution: removed START
 //            accomodationService.save(accomodation);
-//            ui.updateList();
+//            admin.updateList();
 //            setVisible(false);
         // Solution: removed END
 
@@ -174,7 +174,7 @@ public class EditAccomodationForm extends FormLayout {
         try {
             beanFieldGroup.commit();
             accomodationService.save(accomodation);
-            ui.updateList();
+            admin.updateList();
             setVisible(false);
         } catch (FieldGroup.CommitException e) {
             showNotificationFor(e);
