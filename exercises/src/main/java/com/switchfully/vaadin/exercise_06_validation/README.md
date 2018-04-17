@@ -5,7 +5,7 @@
 Add the following validation to the form:
 * Name is required.
 * City is required
-* Number of rooms should be between > 0 and < 10000
+* Number of rooms should be > 0 and < 10000
 
 Submitting the form when there are validation errors should show a warning notification.
 

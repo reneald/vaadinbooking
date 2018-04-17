@@ -1,83 +1,45 @@
-package com.switchfully.vaadin.exercise_06_validation.ui;
+package com.switchfully.vaadin.exercise_06_validation.ui.components;
 
 import com.switchfully.vaadin.domain.Accomodation;
 import com.switchfully.vaadin.service.AccomodationService;
 import com.switchfully.vaadin.service.CityService;
-import com.vaadin.annotations.Theme;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 import static com.switchfully.vaadin.domain.Accomodation.AccomodationBuilder.accomodation;
 import static java.util.stream.Collectors.toList;
 
-@SpringUI
-@Theme("valo")
-public class BookingUI extends UI {
+public class AccomodationAdmin extends CustomComponent {
+
+    private Grid grid = new Grid();
 
     private AccomodationService accomodationService;
     private CityService cityService;
-
-    private Grid grid;
     private TextField filter;
-    private EditAccomodationForm form;
+    private Button newAccomodationButton;
 
-    private List<Accomodation> accomodations;
-
-    @Autowired
-    public BookingUI(AccomodationService accomodationService, CityService cityService) {
+    public AccomodationAdmin(AccomodationService accomodationService, CityService cityService) {
         this.accomodationService = accomodationService;
         this.cityService = cityService;
-    }
 
-    @Override
-    protected void init(VaadinRequest request) {
-        this.accomodations = accomodationService.getAccomodations();
-        this.grid = createGrid();
-        this.form = new EditAccomodationForm(this, accomodationService, cityService);
-
+        List<Accomodation> accomodations = accomodationService.getAccomodations();
         populateGrid(accomodations);
+        CssLayout filtering = createFilterComponent(accomodations);
 
+        // Add a form to the right of the grid to edit details of an accomodation.
+
+        EditAccomodationForm form = new EditAccomodationForm(this, accomodationService, cityService);
         form.setVisible(false);
 
         HorizontalLayout main = new HorizontalLayout(grid, form);
         main.setSpacing(true);
         main.setSizeFull();
-        main.setExpandRatio(grid, 1);
-
-        VerticalLayout mainLayout = new VerticalLayout(createToolbar(), main);
-        mainLayout.setMargin(true);
-        setContent(mainLayout);
-    }
-
-    private HorizontalLayout createToolbar() {
-        CssLayout filtering = createFilterComponent(accomodations);
-        Button newAccomodationButton = createNewAccomodationButton();
-
-        HorizontalLayout toolbar = new HorizontalLayout(filtering, newAccomodationButton);
-        toolbar.setSpacing(true);
-        return toolbar;
-    }
-
-    private Button createNewAccomodationButton() {
-        Button button = new Button("Add new accomodation");
-        button.addClickListener(e -> form.setAccomodation(accomodation()
-                .build()));
-        return button;
-    }
-
-    private Grid createGrid() {
-        Grid grid = new Grid();
-
-        grid.setColumns("name", "starRating", "city.name");
-        grid.getColumn("city.name").setHeaderCaption("City");
         grid.setSizeFull();
+        main.setExpandRatio(grid, 1);
 
         grid.addSelectionListener(event -> {
             if (event.getSelected().isEmpty()) {
@@ -88,7 +50,16 @@ public class BookingUI extends UI {
             }
         });
 
-        return grid;
+        newAccomodationButton = new Button("Add new accomodation");
+        newAccomodationButton.addClickListener(e -> form.setAccomodation(accomodation().build()));
+
+        HorizontalLayout toolbar = new HorizontalLayout(filtering, newAccomodationButton);
+        toolbar.setSpacing(true);
+
+
+        VerticalLayout mainLayout = new VerticalLayout(toolbar, main);
+        mainLayout.setMargin(true);
+        setCompositionRoot(mainLayout);
     }
 
     private CssLayout createFilterComponent(List<Accomodation> accomodations) {
@@ -111,8 +82,8 @@ public class BookingUI extends UI {
 
     private List<Accomodation> filterByName(List<Accomodation> accomodations, String filter) {
         return accomodations.stream()
-            .filter(accomodation -> accomodation.getName().toLowerCase().contains(filter.toLowerCase()))
-            .collect(toList());
+                .filter(accomodation -> accomodation.getName().toLowerCase().contains(filter.toLowerCase()))
+                .collect(toList());
     }
 
     private void populateGrid(List<Accomodation> accomodations) {
@@ -120,6 +91,10 @@ public class BookingUI extends UI {
                 new BeanItemContainer<>(Accomodation.class, accomodations);
 
         container.addNestedContainerProperty("city.name");
+
+        grid.setColumns("name", "starRating", "city.name");
+
+        grid.getColumn("city.name").setHeaderCaption("City");
 
         grid.setContainerDataSource(container);
     }
