@@ -11,18 +11,44 @@
 
     <artifactId>exercises</artifactId>
 
-    <properties>
-        <vaadin.version>7.7.13</vaadin.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.switchfully.vaadin</groupId>
             <artifactId>vaadin-booking-backend</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.switchfully.vaadin</groupId>
+            <artifactId>vaadin-booking-backend</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.11.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.9.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
