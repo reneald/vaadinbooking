@@ -4,7 +4,8 @@ import com.switchfully.vaadin.service.AccomodationService;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.ui.*;
+import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringUI
@@ -20,17 +21,11 @@ public class ExerciseUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        BookingDetailsComponent bookingDetails = new BookingDetailsComponent();
-        bookingDetails.setVisible(false);
+        VerticalLayout mainLayout = new VerticalLayout();
 
-        BookingForm bookingForm = new BookingForm();
-        bookingForm.addSaveClickListener(b -> {
-            bookingForm.setVisible(false);
-            bookingDetails.setBooking(b);
-            bookingDetails.setVisible(true);
-        });
+        // TODO Exercise 11: Create a BookingForm to add a Booking and add it to the mainLayout.
+        // TODO Exercise 11: After saving the Booking, show a BookingDetailsComponent to show the details of the Booking.
 
-        VerticalLayout mainLayout = new VerticalLayout(bookingForm, bookingDetails);
         setContent(mainLayout);
     }
 
