@@ -1,8 +1,6 @@
 package com.switchfully.vaadin.exercise_12_model_view_presenter.ui;
 
-import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.AccomodationAdminModel;
-import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.AccomodationAdminPresenter;
-import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.AccomodationAdminViewImpl;
+import com.switchfully.vaadin.exercise_12_model_view_presenter.ui.components.AccomodationAdmin;
 import com.switchfully.vaadin.service.AccomodationService;
 import com.switchfully.vaadin.service.CityService;
 import com.vaadin.annotations.Theme;
@@ -26,10 +24,10 @@ public class ExerciseUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        AccomodationAdminViewImpl accomodationAdminView = new AccomodationAdminViewImpl();
-        new AccomodationAdminPresenter(new AccomodationAdminModel(accomodationService, cityService), accomodationAdminView);
+        // TODO Exercise 12: Refactor this exercise using the Model-View-Presenter pattern.
+        // TODO Exercise 12 (Extra): Write an (integration) test for the Presenter using the actual model, mocks for the services, and a test stub implementing the View interface.
 
-        setContent(accomodationAdminView);
+        setContent(new AccomodationAdmin(this.accomodationService, this.cityService));
     }
 
 }
