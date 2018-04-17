@@ -3,7 +3,7 @@
 ![screenshot](exercise.png)
 
 ## Part 1: Adding a new Accomodation
-Add a 'Add new accomodation button' that show a form to add an new Accomodation.
+Add a 'Add new accomodation button' that shows a form to add an new Accomodation.
 
 Create an EditAccomodationForm component by writing a new class extending `FormLayout`.
 
@@ -15,7 +15,8 @@ Add fields to this component for the following properties of Accomodation:
 
 Add a Save button to save the entity.
 
-Use `AccomodationService.save()` and `AccomodationService.delete()` to save or delete the entities.
+Use `AccomodationService.save()` to save an accomodation.
+Use `CityService.getCities()` to populate the dropdown with the cities.
 
 Place the EditAccomodationForm component to the right of the grid.
 
@@ -42,5 +43,4 @@ Use `AccomodationService.delete()` to delete the entity.
 Add a Cancel button to the form that closes the form.
 
 ## Extra credits
-
 Add a `DateField` to the form for the 'dateCreated' property of Accomodation.

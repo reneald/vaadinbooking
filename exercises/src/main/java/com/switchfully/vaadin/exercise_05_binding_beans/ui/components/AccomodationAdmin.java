@@ -20,7 +20,6 @@ public class AccomodationAdmin extends CustomComponent {
     private AccomodationService accomodationService;
     private CityService cityService;
     private TextField filter;
-    private Button newAccomodationButton;
 
     public AccomodationAdmin(AccomodationService accomodationService, CityService cityService) {
         this.accomodationService = accomodationService;
@@ -32,32 +31,10 @@ public class AccomodationAdmin extends CustomComponent {
 
         // Add a form to the right of the grid to edit details of an accomodation.
 
-        EditAccomodationForm form = new EditAccomodationForm(this, accomodationService, cityService);
-        form.setVisible(false);
-
-        HorizontalLayout main = new HorizontalLayout(grid, form);
-        main.setSpacing(true);
-        main.setSizeFull();
-        grid.setSizeFull();
-        main.setExpandRatio(grid, 1);
-
-        grid.addSelectionListener(event -> {
-            if (event.getSelected().isEmpty()) {
-                form.setVisible(false);
-            } else {
-                Accomodation accomodation = (Accomodation) event.getSelected().iterator().next();
-                form.setAccomodation(accomodation);
-            }
-        });
-
-        newAccomodationButton = new Button("Add new accomodation");
-        newAccomodationButton.addClickListener(e -> form.setAccomodation(accomodation().build()));
-
-        HorizontalLayout toolbar = new HorizontalLayout(filtering, newAccomodationButton);
+        HorizontalLayout toolbar = new HorizontalLayout(filtering);
         toolbar.setSpacing(true);
 
-
-        VerticalLayout mainLayout = new VerticalLayout(toolbar, main);
+        VerticalLayout mainLayout = new VerticalLayout(toolbar, grid);
         mainLayout.setMargin(true);
         setCompositionRoot(mainLayout);
     }
@@ -97,11 +74,6 @@ public class AccomodationAdmin extends CustomComponent {
         grid.getColumn("city.name").setHeaderCaption("City");
 
         grid.setContainerDataSource(container);
-    }
-
-    public void updateList() {
-        filter.clear();
-        populateGrid(accomodationService.getAccomodations());
     }
 
 }

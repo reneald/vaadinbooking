@@ -1,38 +1,38 @@
-package com.switchfully.vaadin.exercise_02_grids.ui;
+package com.switchfully.vaadin.exercise_03_live_filtering.ui;
 
 import com.switchfully.vaadin.domain.Accomodation;
 import com.switchfully.vaadin.service.AccomodationService;
+import com.vaadin.annotations.Theme;
+import com.vaadin.data.Property;
 import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.event.FieldEvents;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@SpringUI
-public class BookingUI extends UI {
+import java.util.List;
+import java.util.stream.Collectors;
 
-    private AccomodationService accomodationService;
+import static java.util.stream.Collectors.toList;
+
+@SpringUI
+@Theme("valo")
+public class ExerciseUI extends UI {
 
     private Grid grid = new Grid();
 
+    private AccomodationService accomodationService;
+
     @Autowired
-    public BookingUI(AccomodationService accomodationService) {
+    public ExerciseUI(AccomodationService accomodationService) {
         this.accomodationService = accomodationService;
     }
 
     @Override
     protected void init(VaadinRequest request) {
-        // Show the list of accomodations from accomodationService.getAccomodations() in a Grid.
-
-        // Use BeanItemContainer as the ContainerDataSource for the Grid.
-
-        // Try to only show the following properties of an accomodation:
-        // - Name
-        // - Star Rating
-        // - City Name
-
         VerticalLayout mainLayout = new VerticalLayout(grid);
 
         BeanItemContainer<Accomodation> container =
@@ -45,6 +45,10 @@ public class BookingUI extends UI {
         grid.getColumn("city.name").setHeaderCaption("City");
 
         grid.setContainerDataSource(container);
+
+        // Add a filter TextField to the top of the grid to filter the list of accomodations by name.
+
+        // Also add a button next to the filter TextField to clear the filter.
 
         mainLayout.setMargin(true);
         setContent(mainLayout);

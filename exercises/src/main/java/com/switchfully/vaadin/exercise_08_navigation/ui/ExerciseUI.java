@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringUI
 @Theme("valo")
-public class BookingUI extends UI {
+public class ExerciseUI extends UI {
 
     public static final String VIEW_ACCOMODATION_HOME = "";
     public static final String VIEW_ACCOMODATION_DETAIL = "detail";
@@ -21,7 +21,7 @@ public class BookingUI extends UI {
     private Navigator navigator;
 
     @Autowired
-    public BookingUI(AccomodationService accomodationService) {
+    public ExerciseUI(AccomodationService accomodationService) {
         this.accomodationService = accomodationService;
     }
 

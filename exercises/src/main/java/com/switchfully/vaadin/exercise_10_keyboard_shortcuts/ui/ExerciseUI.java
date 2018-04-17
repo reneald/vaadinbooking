@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringUI
 @Theme("valo")
-public class BookingUI extends UI {
+public class ExerciseUI extends UI {
 
     @Autowired
-    public BookingUI() {
+    public ExerciseUI() {
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.switchfully.vaadin.common.Paths;
 import com.switchfully.vaadin.domain.Accomodation;
 import com.switchfully.vaadin.domain.AccomodationId;
 import com.switchfully.vaadin.exercise_07_images.ui.components.AccomodationDetails;
-import com.switchfully.vaadin.exercise_08_navigation.ui.BookingUI;
+import com.switchfully.vaadin.exercise_08_navigation.ui.ExerciseUI;
 import com.switchfully.vaadin.service.AccomodationService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -40,7 +40,7 @@ public class AccomodationDetailView extends CustomComponent implements View {
         AccomodationDetails accomodationDetails = new AccomodationDetails(accomodation);
 
         Button backButton = new Button("Back to search",
-                e -> getUI().getNavigator().navigateTo(BookingUI.VIEW_ACCOMODATION_HOME));
+                e -> getUI().getNavigator().navigateTo(ExerciseUI.VIEW_ACCOMODATION_HOME));
 
         mainLayout.addComponents(backButton, accomodationImage, accomodationDetails);
     }
