@@ -1,6 +1,6 @@
 package com.switchfully.vaadin.exercise_09_declarative_layouts.ui.views;
 
-import com.switchfully.vaadin.exercise_09_declarative_layouts.ui.BookingUI;
+import com.switchfully.vaadin.exercise_09_declarative_layouts.ui.ExerciseUI;
 import com.switchfully.vaadin.exercise_09_declarative_layouts.ui.components.AccomodationResultList;
 import com.switchfully.vaadin.service.AccomodationService;
 import com.vaadin.annotations.DesignRoot;
@@ -18,7 +18,7 @@ public class SearchAccomodationView extends CustomComponent implements View {
         Design.read(design);
 
         design.resultList.addItemClickListener(accomodation -> {
-            getUI().getNavigator().navigateTo(BookingUI.VIEW_ACCOMODATION_DETAIL + "/" + accomodation.getId().toString());
+            getUI().getNavigator().navigateTo(ExerciseUI.VIEW_ACCOMODATION_DETAIL + "/" + accomodation.getId().toString());
         });
 
         design.searchButton.addClickListener(

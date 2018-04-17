@@ -14,7 +14,7 @@ import static com.vaadin.ui.AbstractTextField.TextChangeEventMode.LAZY;
 
 @SpringUI
 @Theme("valo")
-public class BookingUI extends UI {
+public class ExerciseUI extends UI {
 
     private Button update;
     private TextField field;
@@ -23,7 +23,7 @@ public class BookingUI extends UI {
     };
 
     @Autowired
-    public BookingUI() {
+    public ExerciseUI() {
 
     }
 

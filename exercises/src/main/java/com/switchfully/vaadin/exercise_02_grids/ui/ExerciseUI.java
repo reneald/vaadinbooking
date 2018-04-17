@@ -11,14 +11,14 @@ import com.vaadin.ui.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringUI
-public class BookingUI extends UI {
+public class ExerciseUI extends UI {
 
     private AccomodationService accomodationService;
 
     private Grid grid = new Grid();
 
     @Autowired
-    public BookingUI(AccomodationService accomodationService) {
+    public ExerciseUI(AccomodationService accomodationService) {
         this.accomodationService = accomodationService;
     }
 
