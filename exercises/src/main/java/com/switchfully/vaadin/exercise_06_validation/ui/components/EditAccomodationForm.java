@@ -34,7 +34,6 @@ public class EditAccomodationForm extends FormLayout {
     private final Button cancel;
 
     private Accomodation accomodation;
-    private BeanFieldGroup<Accomodation> beanFieldGroup;
 
     public EditAccomodationForm(AccomodationAdmin admin, AccomodationService accomodationService, CityService cityService) {
         this.admin = admin;
@@ -59,12 +58,6 @@ public class EditAccomodationForm extends FormLayout {
     private TextField createNumberOfRoomsField() {
         TextField numberOfRooms = new TextField("Number of rooms");
 
-        // Solution: added START
-        numberOfRooms.addValidator(new IntegerRangeValidator(
-                "The number of rooms must be between 1 and 10000",
-                1, 9999));
-        // Solution: added END
-
         return numberOfRooms;
     }
     private NativeSelect createCityField() {
@@ -72,10 +65,6 @@ public class EditAccomodationForm extends FormLayout {
 
         city.setContainerDataSource(new BeanItemContainer<>(City.class, cityService.getCities()));
         city.setItemCaptionPropertyId("name");
-
-        // Solution: added START
-        city.setRequired(true);
-        // Solution: added END
 
         return city;
     }
@@ -113,10 +102,6 @@ public class EditAccomodationForm extends FormLayout {
         name.setWidth("30em");
         name.setNullRepresentation("");
 
-        // Solution: added START
-        name.setRequired(true);
-        // Solution: added END
-
         return name;
     }
 
@@ -126,31 +111,7 @@ public class EditAccomodationForm extends FormLayout {
 
     public void setAccomodation(Accomodation accomodation) {
         this.accomodation = cloneAccomodation(accomodation).build();
-        // Solution: removed START
-//        BeanFieldGroup.bindFieldsUnbuffered(this.accomodation, this);
-        // Solution: removed END
-
-        // Solution: added START
-        beanFieldGroup = BeanFieldGroup.bindFieldsBuffered(this.accomodation, this);
-
-        beanFieldGroup.addCommitHandler(new FieldGroup.CommitHandler() {
-            @Override
-            public void preCommit(FieldGroup.CommitEvent commitEvent) throws FieldGroup.CommitException {
-                if (starRating.getValue() != null
-                        && (starRating.getValue().equals(StarRating.FOUR_STARS) || starRating.getValue().equals(StarRating.FIVE_STARS))) {
-                    if ((Integer) numberOfRooms.getConvertedValue() < 20) {
-                        numberOfRooms.setComponentError(new UserError("Four and five star hotels should have at least 20 rooms."));
-                        throw new FieldGroup.CommitException("Four and five star hotels should have at least 20 rooms.");
-                    }
-                }
-                numberOfRooms.setComponentError(null);
-            }
-
-            @Override
-            public void postCommit(FieldGroup.CommitEvent commitEvent) throws FieldGroup.CommitException {
-            }
-        });
-        // Solution: added END
+        BeanFieldGroup.bindFieldsUnbuffered(this.accomodation, this);
 
         // Show delete button for only customers already in the database
         delete.setVisible(accomodation.isPersisted());
@@ -164,36 +125,9 @@ public class EditAccomodationForm extends FormLayout {
     }
 
     private void save() {
-        // Solution: removed START
-//            accomodationService.save(accomodation);
-//            admin.updateList();
-//            setVisible(false);
-        // Solution: removed END
-
-        // Solution: added START
-        try {
-            beanFieldGroup.commit();
-            accomodationService.save(accomodation);
-            admin.updateList();
-            setVisible(false);
-        } catch (FieldGroup.CommitException e) {
-            showNotificationFor(e);
-        }
-        // Solution: added END
+        accomodationService.save(accomodation);
+        admin.updateList();
+        setVisible(false);
     }
 
-    // Solution: added START
-    private void showNotificationFor(FieldGroup.CommitException exception) {
-        Notification notification = new Notification("Validation errors",
-                "<br/>Cannot save this accomodation. "
-                        + ((exception.getCause() != null && exception.getCause().getMessage() != null)
-                        ? exception.getCause().getMessage() : ""),
-                Notification.Type.WARNING_MESSAGE, true);
-
-        notification.setDelayMsec(-1);
-
-        notification
-                .show(Page.getCurrent());
-    }
-    // Solution: added END
 }
