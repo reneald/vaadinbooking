@@ -6,17 +6,13 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
 public class ExampleForm1 extends CustomComponent
-        /* Solution Added Start */
         implements Action.Handler
-        /* Solution Added End */
 {
-    // Solution Added Start
     Action action_ok = new ShortcutAction("Default key",
             ShortcutAction.KeyCode.ENTER, null);
 
     Action action_clear = new ShortcutAction("Ctrl+C",
             ShortcutAction.KeyCode.C, new int[] { ShortcutAction.ModifierKey.CTRL });
-    // Solution Added End
 
     private Panel panel;
     private final Button searchButton;
@@ -33,17 +29,11 @@ public class ExampleForm1 extends CustomComponent
         textField = new TextField("Filter");
         searchButton = new Button("Search", e -> result.setValue("Searching with filter " + textField.getValue()));
         searchButton.addStyleName(ValoTheme.BUTTON_PRIMARY);
-        // Solution removed Start
-//        searchButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-        // Solution removed End
 
         clearButton = new Button("Clear", e -> {
             textField.clear();
             result.setValue("");
         });
-        // Solution removed Start
-//        clearButton.setClickShortcut(ShortcutAction.KeyCode.C, new int[] { ShortcutAction.ModifierKey.CTRL });
-        // Solution removed End
 
         HorizontalLayout buttons = new HorizontalLayout(searchButton, clearButton);
         buttons.setSpacing(true);
@@ -53,7 +43,6 @@ public class ExampleForm1 extends CustomComponent
         setCompositionRoot(panel);
     }
 
-    /* Solution Added Start */
     @Override
     public Action[] getActions(Object target, Object sender) {
         return new Action[] {action_ok, action_clear};
@@ -68,6 +57,5 @@ public class ExampleForm1 extends CustomComponent
             clearButton.click();
         }
     }
-    /* Solution Added End */
 
 }

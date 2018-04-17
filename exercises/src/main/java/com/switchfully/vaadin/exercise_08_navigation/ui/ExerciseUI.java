@@ -27,31 +27,12 @@ public class ExerciseUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        // Solution: ADD start
         // Create a navigator to control the views
         navigator = new Navigator(this, this);
 
         // Create and register the views
         navigator.addView(VIEW_ACCOMODATION_HOME, new SearchAccomodationView(accomodationService));
         navigator.addView(VIEW_ACCOMODATION_DETAIL, new AccomodationDetailView(accomodationService));
-        // Solution: ADD end
-
-        // Solution: REMOVE start
-
-//        AccomodationResultList resultList = new AccomodationResultList();
-//
-//        TextField searchField = new TextField();
-//        Button searchButton = new Button("Search",
-//                event -> resultList.setAccomodations(
-//                accomodationService.findAccomodations(searchField.getValue())
-//        ));
-//
-//        HorizontalLayout searchLayout = new HorizontalLayout(searchField, searchButton);
-
-//        VerticalLayout mainLayout = new VerticalLayout(searchLayout, resultList);
-//        setContent(mainLayout);
-
-        // Solution: REMOVE end
     }
 
 }
