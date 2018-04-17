@@ -3,42 +3,35 @@ package com.switchfully.vaadin.exercise_09_declarative_layouts.ui.views;
 import com.switchfully.vaadin.exercise_09_declarative_layouts.ui.ExerciseUI;
 import com.switchfully.vaadin.exercise_09_declarative_layouts.ui.components.AccomodationResultList;
 import com.switchfully.vaadin.service.AccomodationService;
-import com.vaadin.annotations.DesignRoot;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
-import com.vaadin.ui.declarative.Design;
 
-@DesignRoot
 public class SearchAccomodationView extends CustomComponent implements View {
 
-    private SearchAccomodationViewDesign design = new SearchAccomodationViewDesign();
-
     public SearchAccomodationView(AccomodationService accomodationService) {
-        Design.read(design);
+        // TODO Exercise 9: Change this view to use Declarative Layout
 
-        design.resultList.addItemClickListener(accomodation -> {
+        AccomodationResultList resultList = new AccomodationResultList();
+        resultList.addItemClickListener(accomodation -> {
             getUI().getNavigator().navigateTo(ExerciseUI.VIEW_ACCOMODATION_DETAIL + "/" + accomodation.getId().toString());
         });
 
-        design.searchButton.addClickListener(
-                event -> design.resultList.setAccomodations(
-                accomodationService.findAccomodations(design.searchField.getValue())
-        ));
-        setCompositionRoot(design);
+        TextField searchField = new TextField();
+        Button searchButton = new Button("Search",
+                event -> resultList.setAccomodations(
+                        accomodationService.findAccomodations(searchField.getValue())
+                ));
+
+        HorizontalLayout searchLayout = new HorizontalLayout(searchField, searchButton);
+
+        VerticalLayout mainLayout = new VerticalLayout(searchLayout, resultList);
+
+        setCompositionRoot(mainLayout);
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
-    }
-
-    @DesignRoot
-    public static class SearchAccomodationViewDesign extends VerticalLayout {
-
-        TextField searchField;
-        Button searchButton;
-        AccomodationResultList resultList;
 
     }
 

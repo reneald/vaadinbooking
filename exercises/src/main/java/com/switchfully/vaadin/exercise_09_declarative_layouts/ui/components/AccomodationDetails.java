@@ -1,46 +1,41 @@
 package com.switchfully.vaadin.exercise_09_declarative_layouts.ui.components;
 
 import com.switchfully.vaadin.domain.Accomodation;
-import com.vaadin.annotations.DesignRoot;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.declarative.Design;
 import com.vaadin.ui.themes.ValoTheme;
 
 public class AccomodationDetails extends CustomComponent {
 
-    private AccomodationDetailsDesign design = new AccomodationDetailsDesign();
+    private Accomodation accomodation;
 
-    public AccomodationDetails() {
-        Design.read(design);
+    public AccomodationDetails(Accomodation accomodation) {
+        // TODO Exercise 9 (Extra): Change this component to use Declarative Layout
+        this.accomodation = accomodation;
 
-        design.name.addStyleName(ValoTheme.LABEL_H3);
-        design.rating.addStyleName(ValoTheme.LABEL_H3);
+        Label name = new Label(accomodation.getName());
+        name.addStyleName(ValoTheme.LABEL_H3);
 
-        design.city.addStyleName(ValoTheme.LABEL_BOLD);
-        design.description.setContentMode(ContentMode.HTML);
+        StarRatingComponent rating = new StarRatingComponent(accomodation.getStarRating());
+        rating.addStyleName(ValoTheme.LABEL_H3);
 
-        setCompositionRoot(design);
+        HorizontalLayout nameAndRating = new HorizontalLayout(name, rating);
+        nameAndRating.setSpacing(true);
+
+        Label city = new Label("In " + accomodation.getCity().getName());
+        city.addStyleName(ValoTheme.LABEL_BOLD);
+
+        Label description = new Label(accomodation.getDescription());
+        description.setContentMode(ContentMode.HTML);
+
+        VerticalLayout mainLeft = new VerticalLayout(nameAndRating, city, description);
+//        VerticalLayout mainRight = new VerticalLayout();
+
+        HorizontalLayout main = new HorizontalLayout(mainLeft /*, mainRight*/);
+        main.setWidth("100%");
+        setCompositionRoot(main);
     }
-
-    public void setAccomodation(Accomodation accomodation) {
-        design.name.setValue(accomodation.getName());
-        design.rating.setStarRating(accomodation.getStarRating());
-        design.city.setValue("In " + accomodation.getCity().getName());
-        design.description.setValue(accomodation.getDescription());
-    }
-
-    @DesignRoot
-    public static class AccomodationDetailsDesign extends VerticalLayout {
-
-        Label name;
-        StarRatingComponent rating;
-        Label city;
-        Label description;
-
-    }
-
 }

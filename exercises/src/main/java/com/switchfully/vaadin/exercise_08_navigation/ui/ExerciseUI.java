@@ -1,10 +1,8 @@
 package com.switchfully.vaadin.exercise_08_navigation.ui;
 
-import com.switchfully.vaadin.exercise_08_navigation.ui.views.AccomodationDetailView;
-import com.switchfully.vaadin.exercise_08_navigation.ui.views.SearchAccomodationView;
+import com.switchfully.vaadin.exercise_08_navigation.ui.components.AccomodationResultList;
 import com.switchfully.vaadin.service.AccomodationService;
 import com.vaadin.annotations.Theme;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
@@ -14,11 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Theme("valo")
 public class ExerciseUI extends UI {
 
-    public static final String VIEW_ACCOMODATION_HOME = "";
-    public static final String VIEW_ACCOMODATION_DETAIL = "detail";
-
     private AccomodationService accomodationService;
-    private Navigator navigator;
 
     @Autowired
     public ExerciseUI(AccomodationService accomodationService) {
@@ -27,31 +21,21 @@ public class ExerciseUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        // Solution: ADD start
-        // Create a navigator to control the views
-        navigator = new Navigator(this, this);
+        // TODO Exercise 8: Add an accomodation Detail view that is opened when you click on a result in the list.
+        // TODO Exercise 8: Use the Vaadin Navigator to navigate between the list and detail views. Make the detail view have a different url, such as: /accomodation/{id} so that this view is bookmarkable and supports the back button.
 
-        // Create and register the views
-        navigator.addView(VIEW_ACCOMODATION_HOME, new SearchAccomodationView(accomodationService));
-        navigator.addView(VIEW_ACCOMODATION_DETAIL, new AccomodationDetailView(accomodationService));
-        // Solution: ADD end
+        AccomodationResultList resultList = new AccomodationResultList();
 
-        // Solution: REMOVE start
+        TextField searchField = new TextField();
+        Button searchButton = new Button("Search",
+                event -> resultList.setAccomodations(
+                accomodationService.findAccomodations(searchField.getValue())
+        ));
 
-//        AccomodationResultList resultList = new AccomodationResultList();
-//
-//        TextField searchField = new TextField();
-//        Button searchButton = new Button("Search",
-//                event -> resultList.setAccomodations(
-//                accomodationService.findAccomodations(searchField.getValue())
-//        ));
-//
-//        HorizontalLayout searchLayout = new HorizontalLayout(searchField, searchButton);
+        HorizontalLayout searchLayout = new HorizontalLayout(searchField, searchButton);
 
-//        VerticalLayout mainLayout = new VerticalLayout(searchLayout, resultList);
-//        setContent(mainLayout);
-
-        // Solution: REMOVE end
+        VerticalLayout mainLayout = new VerticalLayout(searchLayout, resultList);
+        setContent(mainLayout);
     }
 
 }

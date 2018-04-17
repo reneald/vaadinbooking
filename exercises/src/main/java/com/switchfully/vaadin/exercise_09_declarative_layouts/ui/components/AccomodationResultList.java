@@ -29,11 +29,7 @@ public class AccomodationResultList extends CustomComponent {
         this.list.removeAllComponents();
         this.accomodations
                 .stream()
-                .map(accomodation -> {
-                    AccomodationResult accomodationResult = new AccomodationResult();
-                    accomodationResult.setAccomodation(accomodation);
-                    return accomodationResult;
-                })
+                .map(AccomodationResult::new)
                 .forEach(component -> {
                     component.addClickListener(event ->
                             AccomodationResultList.this.itemClickListeners

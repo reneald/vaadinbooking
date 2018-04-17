@@ -3,16 +3,13 @@ package com.switchfully.vaadin.exercise_09_declarative_layouts.ui.views;
 import com.switchfully.vaadin.common.Paths;
 import com.switchfully.vaadin.domain.Accomodation;
 import com.switchfully.vaadin.domain.AccomodationId;
-import com.switchfully.vaadin.exercise_07_images.ui.components.AccomodationDetails;
 import com.switchfully.vaadin.exercise_09_declarative_layouts.ui.ExerciseUI;
+import com.switchfully.vaadin.exercise_09_declarative_layouts.ui.components.AccomodationDetails;
 import com.switchfully.vaadin.service.AccomodationService;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.CustomComponent;
-import com.vaadin.ui.Image;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
 import java.io.File;
 
@@ -22,6 +19,7 @@ public class AccomodationDetailView extends CustomComponent implements View {
     private final VerticalLayout mainLayout;
 
     public AccomodationDetailView(AccomodationService accomodationService) {
+        // TODO Exercise 9 (Extra): Change this view to use Declarative Layout
         this.accomodationService = accomodationService;
 
         mainLayout = new VerticalLayout();

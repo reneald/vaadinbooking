@@ -3,27 +3,14 @@ package com.switchfully.vaadin.exercise_09_declarative_layouts.ui.components;
 import com.switchfully.vaadin.domain.StarRating;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.label.ContentMode;
-import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
 
-public class StarRatingComponent extends CustomComponent {
+public class StarRatingComponent extends Label {
 
-    private Label label;
-
-    public StarRatingComponent() {
+    public StarRatingComponent(StarRating starRating) {
         super();
-        this.label = new Label();
-        this.label.setContentMode(ContentMode.HTML);
-        setCompositionRoot(label);
-    }
-
-    public void setStarRating(StarRating starRating) {
-        this.label.setValue(generateStars(starRating));
-    }
-
-    @Override
-    public void addStyleName(String style) {
-        this.label.addStyleName(style);
+        this.setValue(generateStars(starRating));
+        this.setContentMode(ContentMode.HTML);
     }
 
     private String generateStars(StarRating starRating) {
