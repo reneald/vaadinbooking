@@ -29,7 +29,7 @@ public class ExerciseUI extends UI {
             input.setImmediate(autoCommit.getValue());
             commit.setVisible(!autoCommit.getValue());
         });
-        commit.addClickListener(clickEvent -> name.setValue(input.getValue()));
+        commit.addClickListener(clickEvent -> input.commit());
 
         VerticalLayout mainLayout = new VerticalLayout(input, output, autoCommit, commit);
         mainLayout.setMargin(true);
