@@ -7,6 +7,9 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.*;
 
+import static com.vaadin.ui.AbstractTextField.TextChangeEventMode.EAGER;
+import static com.vaadin.ui.AbstractTextField.TextChangeEventMode.LAZY;
+
 @SpringUI
 @Theme("valo")
 public class ExerciseUI extends UI {
@@ -19,6 +22,9 @@ public class ExerciseUI extends UI {
         CheckBox autoCommit = new CheckBox("auto commit");
         Button commit = new Button("Commit input");
 
+
+        // with setImmediate() the Label gets updated when you move the cursor out of the TextField.
+        // The solution in the solutions branch changes the Label in real time (with a TextChangeListener).
         autoCommit.addValueChangeListener(valueChangeEvent -> {
             input.setImmediate(autoCommit.getValue());
             commit.setVisible(!autoCommit.getValue());
