@@ -24,6 +24,9 @@ public class ExerciseUI extends UI {
         Button eight = new Button("8");
         Button nine = new Button("9");
         Button star = new Button("*");
+        // Because the star sign is a bit smaller than the other characters, the button is a bit smaller.
+        // Setting width to 100% makes it a bit better (although now the star button is slightly too large!)
+        star.setWidth("100%");
         Button zero = new Button("0");
         Button pound = new Button("#");
 
