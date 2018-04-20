@@ -22,7 +22,6 @@ public class ExerciseUI extends UI {
         CheckBox autoCommit = new CheckBox("auto commit");
         Button commit = new Button("Commit input");
 
-
         // with setImmediate() the Label gets updated when you move the cursor out of the TextField.
         // The solution in the solutions branch changes the Label in real time (with a TextChangeListener).
         autoCommit.addValueChangeListener(valueChangeEvent -> {
