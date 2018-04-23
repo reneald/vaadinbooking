@@ -27,21 +27,43 @@ public class AccomodationAdmin extends CustomComponent {
 
         List<Accomodation> accomodations = accomodationService.getAccomodations();
         populateGrid(accomodations);
+
         CssLayout filtering = createFilterComponent(accomodations);
 
-        // TODO Exercise 5: Add a 'New Accomodation' button.
-        // TODO Exercise 5: Create an EditAccomodationForm and add it to the right of the grid to add a new accomodation.
-        // TODO Exercise 5: When selecting an accomodation in the grid, load it in the EditAccomodationForm to update it.
-        // TODO Exercise 5: Add a 'Delete' button to the form to delete an accomodation.
-        // TODO Exercise 5: Add a 'Cancel' button to the form to close the form.
+        EditAccomodationForm form = new EditAccomodationForm(this, accomodationService, cityService);
+        form.setVisible(false);
+
+        Button newAccomodation = new Button("New Accomodation");
+        newAccomodation.addClickListener(event -> initiateAccomodationForm(form));
+
+        grid.addSelectionListener(event -> {
+            if (event.getSelected().isEmpty()) {
+                form.setVisible(false);
+
+            } else {
+                Accomodation selectedAccomodation = (Accomodation) event.getSelected().iterator().next();
+                form.setAccomodation(selectedAccomodation);
+                form.setVisible(true);
+            }
+
+        });
+
         // TODO Exercise 5 (Extra): Add ta DateField for creationDate to the form.
 
-        HorizontalLayout toolbar = new HorizontalLayout(filtering);
+        HorizontalLayout toolbar = new HorizontalLayout(filtering, newAccomodation);
         toolbar.setSpacing(true);
 
-        VerticalLayout mainLayout = new VerticalLayout(toolbar, grid);
+        HorizontalLayout accomodationLayout = new HorizontalLayout(grid, form);
+        accomodationLayout.setSpacing(true);
+
+        VerticalLayout mainLayout = new VerticalLayout(toolbar, accomodationLayout);
         mainLayout.setMargin(true);
         setCompositionRoot(mainLayout);
+    }
+
+    private void initiateAccomodationForm(EditAccomodationForm form) {
+        form.setAccomodation(accomodation().build());
+        form.setVisible(true);
     }
 
     private CssLayout createFilterComponent(List<Accomodation> accomodations) {
@@ -56,6 +78,7 @@ public class AccomodationAdmin extends CustomComponent {
             populateGrid(accomodations);
         });
 
+
         CssLayout filtering = new CssLayout();
         filtering.addComponents(filter, clearFilterTextBtn);
         filtering.setStyleName(ValoTheme.LAYOUT_COMPONENT_GROUP);
@@ -68,7 +91,7 @@ public class AccomodationAdmin extends CustomComponent {
                 .collect(toList());
     }
 
-    private void populateGrid(List<Accomodation> accomodations) {
+    public void populateGrid(List<Accomodation> accomodations) {
         BeanItemContainer<Accomodation> container =
                 new BeanItemContainer<>(Accomodation.class, accomodations);
 
